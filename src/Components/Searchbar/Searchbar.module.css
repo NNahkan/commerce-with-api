@@ -1,0 +1,37 @@
+.searchBar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 2rem;
+}
+
+.searchBar input {
+	padding: 1rem 1.5rem;
+	border: 2px solid grey;
+	border-radius: 8px;
+	transition: .4s;
+}
+
+.searchBar input:hover {
+	border-color: black;
+}
+
+.searchCategory ul {
+	display: flex;
+	justify-content: space-evenly;
+	
+}
+
+.searchCategory ul li {
+	transition: .4s;
+	padding: 5px;
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	font-weight: 800;
+	cursor: pointer;
+}
+
+.searchCategory ul li:hover {
+	border-bottom: 3px inset pink;
+	color: pink;
+}

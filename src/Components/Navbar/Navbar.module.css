@@ -1,0 +1,21 @@
+.navbar {
+	display: flex;
+	color: pink;
+	padding: 2rem;
+	width: 100%;
+	margin-bottom: 2rem;
+}
+
+.navbar  :first-child :hover {
+	color: red;
+	cursor: pointer;
+}
+
+.ulNavbar {
+	display: flex;
+	justify-content: center;
+}
+
+.ulNavbar li {
+	margin-left: 2rem;
+}
