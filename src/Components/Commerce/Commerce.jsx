@@ -1,37 +1,63 @@
 import React, { Component } from "react";
+import Home from "../Home/Home";
 import Navbar from "../Navbar/Navbar";
-import Searchbar from "../Searchbar/Searchbar";
 import CommerceService from "../service";
 
 const commerce = new CommerceService();
 class Commerce extends Component {
+	constructor() {
+		super();
+		this.state = {
+			data: [],
+			loading: false,
+			error: false,
+		}
+	}
 
 	componentDidMount() {
+		this.setState({
+			loading: true,
+			error: false
+		})
 		commerce.fetchProducts().then(
 			(res) => {
 				if (res && res.response.ok) {
-					console.log(res.data);
+					this.setState({
+						data: res.data,
+						loading: false
+					})
 				} else {
-					console.log("else calisti");
+					this.setState({ loading: false})
 				}
 			},
 			(error) => {
-				console.log(error,"error calisti");
+				this.setState({
+					loading: false,
+					error: true
+				})
 			}
 		)
 	}
 
+	
+
   render() {
+	const { loading, error, data } = this.state;
     return (
       <>
-        <Navbar />
+        <Navbar/>
         <div className="container">
-          <Searchbar />
-        </div>
+			{!loading ? (
+				<Home
+				data={data}/>
+			) : (
+				<div>Loading...</div>
+			)}
+		  </div>
+		  {error && <h3> Error loading data</h3>}
       </>
     );
   }
 }
-//"https://api.chec.io/v1/assets/ast_B7ZQobNDa4AgNn"
 
 export default Commerce;

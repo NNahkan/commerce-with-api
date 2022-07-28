@@ -16,22 +16,24 @@
 	border-color: black;
 }
 
-.searchCategory ul {
+.searchCategory {
 	display: flex;
 	justify-content: space-evenly;
-	
 }
 
-.searchCategory ul li {
-	transition: .4s;
+.searchCategory button {
+	border: none;
+	border-bottom: 2px solid transparent;
+	background: transparent;
+	transition: .3s;
 	padding: 5px;
-	font-size: 1.5rem;
+	font-size: 1.1rem;
 	text-transform: uppercase;
-	font-weight: 800;
+	font-weight: 600;
 	cursor: pointer;
 }
 
-.searchCategory ul li:hover {
-	border-bottom: 3px inset pink;
+.searchCategory button:hover {
 	color: pink;
-}
+	border-bottom-color: pink;
+} 

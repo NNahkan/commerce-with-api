@@ -1,0 +1,6 @@
+.portfolioGrid {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 3rem 0;
+	justify-content: center;
+}
