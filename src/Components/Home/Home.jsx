@@ -17,6 +17,8 @@ class Home extends Component {
   };
 
   searchFilter = (searchString, item) => {
+	// Birden fazla kelime yazilmasi
+	// Searching more than a word ?             !!
     const stringArray = searchString.split(" ");
     return stringArray.some((word) => word.includes(item.toLowerCase()))
       ? true
@@ -44,6 +46,7 @@ class Home extends Component {
             })
             .filter((item) => 
 					this.searchFilter(item.name.toLowerCase(), search)
+					|| (item.category.toLowerCase()).includes(search.toLowerCase())
             ) 
               
 				.map((item, index) => (

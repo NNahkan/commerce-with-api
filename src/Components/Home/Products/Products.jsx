@@ -20,7 +20,7 @@ class Products extends Component {
 				
 					<div className={`${s.cardHover} ${isHover && (s.hover)}`}>
 					<div>{item.description}</div>
-					<button className='btn'>ADD</button>
+					<button onClick={()=> console.log(item)} className='btn'>ADD</button>
 					</div>
 				
 				<div className={s.cardBody}>
