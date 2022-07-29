@@ -10,8 +10,8 @@ class Searchbar extends Component {
           <input onChange={this.props.searchUser} type="search" placeholder="Search..." />
         </div>
 			<div className={s.searchCategory}>
-					{categories.map((item) => (
-							<button onClick={this.props.searchButton} name={item}>{item}</button>
+					{categories.map((item, index) => (
+							<button key={index} onClick={this.props.searchButton} name={item}>{item}</button>
 					))}
 				</div>
 			

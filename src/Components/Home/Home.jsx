@@ -8,46 +8,50 @@ class Home extends Component {
     super();
     this.state = {
       search: "",
-		searchData: []
+      searchData: [],
     };
   }
 
-  searchButton = ({ target: { name } }) => {
-    this.setState({ search: name });
-    this.searchFilter();
-  };
-
   searchUser = ({ target: { value } }) => {
     this.setState({ search: value });
-    console.log(this.state.search);
-	 this.searchFilter();
-  };  
+  };
 
-  searchFilter = () => {
-		if (this.state.search === "all") {
-			this.setState({
-				searchData : this.props.data
-			})
-		} else {
-			this.setState({
-				searchData : this.props.data.filter(item => item.description.includes(this.state.search))
-			})
-		}
-  }
+  searchFilter = (searchString, item) => {
+    const stringArray = searchString.split(" ");
+    return stringArray.some((word) => word.includes(item.toLowerCase()))
+      ? true
+      : false;
+  };
 
   render() {
-    
-	const data = this.props.data;
+    const { data } = this.props;
+    const { search } = this.state;
 
     return (
       <div className="container">
-        <Searchbar
-		   searchUser={this.searchUser} 
-		   searchButton={this.searchButton} />
+        <Searchbar searchUser={this.searchUser} />
         <div className={s.portfolioGrid}>
-          {data.map((item) => (
-              <Products item={item} />
-          ))}
+          {data
+
+            .sort((a, b) => {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (a.name < b.name) {
+                return -1;
+              }
+              return 0;
+            })
+            .filter((item) => 
+					this.searchFilter(item.name.toLowerCase(), search)
+            ) 
+              
+				.map((item, index) => (
+					<Products 
+					key={index}
+					item={item} />
+				))
+				}
         </div>
       </div>
     );
