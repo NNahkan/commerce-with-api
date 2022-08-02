@@ -8,8 +8,11 @@ class Products extends Component {
 			isHover: false
 		}
 	}
+
+	updateSubState = (name, sub, state, func) => this.props.updateSubState(name, sub, state, func);
+
 	render() {
-		const {item} = this.props
+		const {item,} = this.props
 		const {isHover} = this.state
 		return (
 			<div 
@@ -20,7 +23,7 @@ class Products extends Component {
 				
 					<div className={`${s.cardHover} ${isHover && (s.hover)}`}>
 					<div>{item.description}</div>
-					<button onClick={()=> console.log(item)} className='btn'>ADD</button>
+					<button onClick={() => this.props.updateCart( {[item.name] : item} )} className='btn'>ADD</button>
 					</div>
 				
 				<div className={s.cardBody}>

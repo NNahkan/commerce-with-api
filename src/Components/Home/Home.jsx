@@ -12,9 +12,12 @@ class Home extends Component {
     };
   }
 
+  updateSubState = (name, sub, state, func) => this.props.updateSubState(name, sub, state, func);
+
   searchUser = ({ target: { value } }) => {
     this.setState({ search: value });
   };
+
 
   searchFilter = (searchString, item) => {
 	// Birden fazla kelime yazilmasi
@@ -31,7 +34,10 @@ class Home extends Component {
 
     return (
       <div className="container">
-        <Searchbar searchUser={this.searchUser} />
+        <Searchbar 
+		  searchUser={this.searchUser}
+			search={search} 
+		  />
         <div className={s.portfolioGrid}>
           {data
 
@@ -51,6 +57,8 @@ class Home extends Component {
               
 				.map((item, index) => (
 					<Products 
+					updateCart={this.props.updateCart}
+					stateDeneme={this.props.stateDeneme}
 					key={index}
 					item={item} />
 				))

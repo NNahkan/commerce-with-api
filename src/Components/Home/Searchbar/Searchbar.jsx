@@ -7,11 +7,11 @@ class Searchbar extends Component {
     return (
       <>
         <div className={s.searchBar}>
-          <input onChange={this.props.searchUser} type="search" placeholder="Search..." />
+          <input value={this.props.search} onChange={this.props.searchUser} type="search" placeholder="Search..." />
         </div>
 			<div className={s.searchCategory}>
 					{categories.map((item, index) => (
-							<button key={index} onClick={this.props.searchButton} name={item}>{item}</button>
+							<button key={index} onClick={this.props.searchUser} value={item==="All" ? null : item}>{item}</button>
 					))}
 				</div>
 			

@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import Home from "../Home/Home";
 import Navbar from "../Navbar/Navbar";
 import CommerceService from "../service";
+import { variables } from "../Javascript/StateVariables";
+
+const INIT_CARD = variables;
 
 const commerce = new CommerceService();
 class Commerce extends Component {
 	constructor() {
 		super();
 		this.state = {
+			commerce: INIT_CARD,
 			data: [],
 			loading: false,
 			error: false,
@@ -39,6 +43,36 @@ class Commerce extends Component {
 		)
 	}
 
+	updateState = (name, state, func) => {
+		this.setState((prevState) => ({
+			[name]: {
+				...prevState[name],
+				...state,
+			},
+		}),
+		func
+		);
+	};
+
+	updateSubState = (name, sub, state, func) => {
+		this.setState((prevState) => ({
+			[name]: {
+				...prevState[name],
+				[sub]: {
+					...prevState[name][sub],
+					...state,
+				},
+			},
+		}),
+		func
+		);
+	};
+
+	updateCart = (state, func) =>
+        this.updateSubState("commerce", "cart", state, func);
+
+
+	
 	
 
   render() {
@@ -49,6 +83,7 @@ class Commerce extends Component {
         <div className="container">
 			{!loading ? (
 				<Home
+				updateCart={this.updateCart}
 				data={data}/>
 			) : (
 				<div>Loading...</div>
