@@ -4,6 +4,7 @@
 	padding: 2rem;
 	width: 100%;
 	margin-bottom: 2rem;
+	text-transform: uppercase;
 }
 
 .navbar  :first-child :hover {
@@ -18,4 +19,12 @@
 
 .ulNavbar li {
 	margin-left: 2rem;
+}
+
+.ulNavbar li button {
+	border:none;
+	background-color: transparent;
+	color: pink;
+	text-transform: uppercase;
+
 }

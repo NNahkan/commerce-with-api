@@ -22,7 +22,8 @@ class CommerceService {
 						description: item.description,
 						price: item.price.raw,
 						image: item.image.url,
-						category: item.categories[0].name
+						category: item.categories[0].name,
+						quantity: 1
 					}))
 					const json2 = await res2.json();
 					const data2 = json2.data
@@ -31,7 +32,9 @@ class CommerceService {
 						description: item.description,
 						price: item.price.raw,
 						image: item.image.url,
-						category: item.categories[0].name
+						category: item.categories[0].name,
+						quantity: 1
+
 					}))
 					data.push(...data2);
 					success({ response, data})

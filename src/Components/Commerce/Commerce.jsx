@@ -3,6 +3,7 @@ import Home from "../Home/Home";
 import Navbar from "../Navbar/Navbar";
 import CommerceService from "../service";
 import { variables } from "../Javascript/StateVariables";
+import Cart from "../Cart/Cart";
 
 const INIT_CARD = variables;
 
@@ -71,23 +72,41 @@ class Commerce extends Component {
 	updateCart = (state, func) =>
         this.updateSubState("commerce", "cart", state, func);
 
+	
+
 
 	
 	
 
   render() {
-	const { loading, error, data } = this.state;
+	const { loading, error, data , commerce} = this.state;
+	const { home, login, cart, signUp} = this.state.commerce.displayScreens;
     return (
       <>
-        <Navbar/>
+        <Navbar
+		  displayCondition={commerce.displayScreens}
+		  updateSubState={this.updateSubState}
+		  />
         <div className="container">
 			{!loading ? (
+			  <>
+			  {home && (
 				<Home
 				updateCart={this.updateCart}
-				data={data}/>
+				data={data}
+				/>
+			  )}
+			  </>
 			) : (
 				<div>Loading...</div>
 			)}
+			{cart && (
+				<Cart
+				cart={commerce.cart}
+
+				/>
+			)}
+
 		  </div>
 		  {error && <h3> Error loading data</h3>}
       </>
