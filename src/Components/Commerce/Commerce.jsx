@@ -69,8 +69,37 @@ class Commerce extends Component {
 		);
 	};
 
+	updateItemCart = (name, sub, itemCart, state, func ) => {
+		this.setState((prevState) => ({
+			[name]: {
+				...prevState[name],
+				[sub]: {
+					...prevState[name][sub],
+					[itemCart] : {
+						...prevState[name][sub][itemCart],
+						...state,
+					},
+				},
+			},
+		}),
+		func
+		);
+	};
+	
 	updateCart = (state, func) =>
-        this.updateSubState("commerce", "cart", state, func);
+	this.updateSubState("commerce", "cart", state, func);
+
+	updateItem = (name, state) =>
+	this.updateItemCart("commerce", "cart", name, state);
+
+	updateDisplay = (display) => {
+		const displayCondition = Object.keys(this.state.commerce.displayScreens);
+		displayCondition.forEach((elm) => {
+			this.updateSubState("commerce", "displayScreens", { [elm] : false })
+		});
+		this.updateSubState("commerce", "displayScreens", { [display] : true})
+	}
+	
 
 	
 
@@ -85,7 +114,7 @@ class Commerce extends Component {
       <>
         <Navbar
 		  displayCondition={commerce.displayScreens}
-		  updateSubState={this.updateSubState}
+		  updateDisplay={this.updateDisplay}
 		  />
         <div className="container">
 			{!loading ? (
@@ -102,6 +131,7 @@ class Commerce extends Component {
 			)}
 			{cart && (
 				<Cart
+				updateItem={this.updateItem}
 				cart={commerce.cart}
 
 				/>

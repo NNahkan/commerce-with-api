@@ -6,6 +6,7 @@ class Cart extends Component {
     return (
       <div className="secondContainer">
         <ItemContainer
+		  updateItem={this.props.updateItem}
 		  cart={this.props.cart}
 		  />
         <div className="rightContainer">Summary</div>

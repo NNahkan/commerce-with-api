@@ -3,13 +3,7 @@ import s from "./Navbar.module.css";
 
 class Navbar extends Component {
   
-	updateDisplay = (state) => {
-		const displayCondition = Object.keys(this.props.displayCondition);
-		displayCondition.forEach((elm) => {
-			this.props.updateSubState("commerce", "displayScreens", { [elm]: false})
-		});
-		this.props.updateSubState("commerce", "displayScreens", {[state]: true})
-	}
+	updateDisplay = (state) => this.props.updateDisplay(state);
 
 	render() {
 
@@ -18,7 +12,7 @@ class Navbar extends Component {
       <div className="background">
         <div className="container">
           <div className={s.navbar}>
-            <div>NNahkan</div>
+            <button onClick={() => this.updateDisplay("home")}>NNahkan</button>
             <div style={{marginLeft: "auto"}}>
               <ul className={`ul-defaults-none ${s.ulNavbar}`}>
                 <li><button >Login</button></li>

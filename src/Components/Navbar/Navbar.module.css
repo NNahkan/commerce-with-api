@@ -7,7 +7,15 @@
 	text-transform: uppercase;
 }
 
-.navbar  :first-child :hover {
+.navbar button {
+	border:none;
+	background-color: transparent;
+	color: pink;
+	text-transform: uppercase;
+
+}
+
+.navbar button:hover {
 	color: red;
 	cursor: pointer;
 }
@@ -21,10 +29,3 @@
 	margin-left: 2rem;
 }
 
-.ulNavbar li button {
-	border:none;
-	background-color: transparent;
-	color: pink;
-	text-transform: uppercase;
-
-}
