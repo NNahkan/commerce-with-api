@@ -1,5 +1,6 @@
 .itemFlex {
 	display: flex;
+	position: relative;
 	align-items: center;
 	justify-content: space-evenly;
 	padding: 1rem;
@@ -21,4 +22,17 @@
 .itemImage img {
 	width: 50%;
 	margin-bottom: 8px;
+}
+
+.deleteBtn {
+ position: absolute;
+ right: 0;
+ color: red;
+ border-radius: 50%;
+ transition: .4s;
+}
+
+.deleteBtn:hover {
+	background-color: red;
+	color: white;
 }

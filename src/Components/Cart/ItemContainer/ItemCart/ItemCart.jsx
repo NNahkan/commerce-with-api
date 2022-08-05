@@ -3,7 +3,30 @@ import s from "./ItemCart.module.css";
 
 class ItemCart extends Component {
 
-	updateItem= this.props.updateItem;
+	// updateItem = this.props.updateItem;
+	// e => this.updateItem(name, {quantity: e.target.value})}>
+	updateItem = ({ target: {value}}) => {
+		this.props.updateItem(this.props.product.name, {quantity:value})
+	}
+	deleteCart = () => {
+		this.props.deleteCart("commerce","cart",this.props.product.name);
+	};
+	// deletecart = this.props.deleteCart
+	creatingSelect = (inventory) => {
+		let arr = [];
+		for ( let i = 0; i <= inventory; i++) {
+			arr.push(
+				<option key={i}  value={i} >
+					{i}
+					</option>
+			);
+		}
+		return arr;
+	};
+
+	
+	
+
   render() {
     const { product } = this.props;
     const { name, price, image, quantity } = product;
@@ -13,21 +36,19 @@ class ItemCart extends Component {
           <img src={image} alt="" />
           <span>{name}</span>
         </div>
-        <div>${price}</div>
+        <div>${(price)}</div>
         <div>
           <select 
 			 name="quantity" 
 			 id="quantity" 
 			 value={quantity} 
-			 onChange={e => this.updateItem(name, {quantity: e.target.value })}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+			 onChange={ this.updateItem}>
+			{/* onChange={ ({ target: { value } }) => this.updateItem(name, {quantity: value})}> */}
+            {this.creatingSelect(9)}
           </select>
         </div>
-        <div>${price*quantity}</div>
+        <div>${(price*quantity).toFixed(2)}</div>
+		  <button onClick={this.deleteCart} className={`btn-ghost ${s.deleteBtn}`}>X</button>
       </div>
     );
   }

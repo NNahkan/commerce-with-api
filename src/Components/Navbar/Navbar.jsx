@@ -12,12 +12,12 @@ class Navbar extends Component {
       <div className="background">
         <div className="container">
           <div className={s.navbar}>
-            <button onClick={() => this.updateDisplay("home")}>NNahkan</button>
+            <button className="btn-ghost" onClick={() => this.updateDisplay("home")}>NNahkan</button>
             <div style={{marginLeft: "auto"}}>
               <ul className={`ul-defaults-none ${s.ulNavbar}`}>
-                <li><button >Login</button></li>
-                <li><button >Create An Account</button></li>
-                <li><button onClick={() => this.updateDisplay("cart")}>Cart</button></li>
+                <li><button className="btn-ghost" >Login</button></li>
+                <li><button className="btn-ghost" >Create An Account</button></li>
+                <li><button className="btn-ghost" onClick={() => this.updateDisplay("cart")}>Cart</button></li>
               </ul>
             </div>
           </div>

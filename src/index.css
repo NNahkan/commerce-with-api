@@ -88,6 +88,11 @@ button:not(:disabled):not(.disabled) {
   cursor: pointer;
 }
 
+.btn-ghost {
+	background-color: transparent;
+	border: none;
+}
+
 .btn-primary,
 .btn-primary a {
   
@@ -130,14 +135,15 @@ button:not(:disabled):not(.disabled) {
 
 .secondContainer{
 	display: flex;
-	align-items: center;
-	justify-content: stretch;
+	gap: 20px;
+	align-items: flex-start;
+	justify-content: flex;
 }
 
 .leftContainer {
-	flex: 7;
+	flex: 6;
 }
 
 .rightContainer {
-	flex: 3;
+	flex: 2;
 }

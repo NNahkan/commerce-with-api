@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Summary from "../Summary/Summary";
 import ItemContainer from "./ItemContainer/ItemContainer";
 
 class Cart extends Component {
@@ -6,10 +7,13 @@ class Cart extends Component {
     return (
       <div className="secondContainer">
         <ItemContainer
-		  updateItem={this.props.updateItem}
-		  cart={this.props.cart}
+          updateItem={this.props.updateItem}
+          cart={this.props.cart}
+          deleteCart={this.props.deleteCart}
+        />
+        <Summary 
+		  cart={this.props.cart} 
 		  />
-        <div className="rightContainer">Summary</div>
       </div>
     );
   }

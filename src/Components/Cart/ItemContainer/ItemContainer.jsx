@@ -20,6 +20,7 @@ class ItemContainer extends Component {
           return (
             <ItemCart
               updateItem={this.props.updateItem}
+				  deleteCart={this.props.deleteCart}
               key={index}
               product={product}
             />

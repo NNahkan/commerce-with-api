@@ -1,0 +1,17 @@
+.pricesWrap {
+	padding: 1rem;
+}
+
+.priceTags {
+	display: flex;
+	justify-content: space-between;
+	font-size: 18px;
+	font-weight: 700;
+	margin-top: 15px;
+	letter-spacing: 1.1px;
+}
+
+.pricesWrap :nth-child(4) :last-child {
+	color: rgb(245, 0, 0);
+	font-weight: bold;
+}

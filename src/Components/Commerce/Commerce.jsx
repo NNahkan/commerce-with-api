@@ -99,6 +99,12 @@ class Commerce extends Component {
 		});
 		this.updateSubState("commerce", "displayScreens", { [display] : true})
 	}
+
+	deleteCart = (commerce, name, sub) => {
+		const arr = {...this.state};
+		delete arr[commerce][name][sub];
+		this.setState( arr );
+	}
 	
 
 	
@@ -133,6 +139,7 @@ class Commerce extends Component {
 				<Cart
 				updateItem={this.updateItem}
 				cart={commerce.cart}
+				deleteCart={this.deleteCart}
 
 				/>
 			)}
