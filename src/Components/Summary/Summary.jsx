@@ -18,13 +18,27 @@ class Summary extends Component {
 
 	priceShipping = () => {
 		let shipPrice = 0;
-		if (this.priceTotal() < 250 && this.priceTotal !== 0) {
+		if (this.priceTotal() < 250 && this.priceTotal() > 0) {
 			shipPrice = 10
 		}
 		return parseFloat(shipPrice.toFixed(2));
 	}
 
+	nextPage = () => {
+		const displayScreens = this.props.displayScreens
+		const names = Object.keys(displayScreens)
+		names.forEach(elm => {
+			const ind = names.indexOf(elm);
+			if (displayScreens[elm] === true) {
+				this.props.updateDisplay( names[ind + 1]);
+			}
+		});
+	}
+
 	render() {
+		
+
+
 		return (
 			<div className={`rightContainer ${s.summaryContainer}`}>
 				<h2>SUMMARY</h2>
@@ -32,7 +46,8 @@ class Summary extends Component {
 				<Prices
 				priceTotal = {this.priceTotal}
 				priceShipping = {this.priceShipping}/>
-			</div>
+				<button onClick={()=>this.nextPage()} className='btn btn-menu'>Next Step</button>
+				</div>
 		);
 	}
 }

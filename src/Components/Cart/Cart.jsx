@@ -7,13 +7,16 @@ class Cart extends Component {
     return (
       <div className="secondContainer">
         <ItemContainer
+          updateDisplay={this.props.updateDisplay}
           updateItem={this.props.updateItem}
           cart={this.props.cart}
           deleteCart={this.props.deleteCart}
         />
-        <Summary 
-		  cart={this.props.cart} 
-		  />
+        <Summary
+          cart={this.props.cart}
+			 displayScreens={this.props.displayScreens}
+			 updateDisplay={this.props.updateDisplay}
+        />
       </div>
     );
   }

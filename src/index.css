@@ -1,15 +1,15 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "PT Serif", serif; 
+  font-family: "PT Serif", serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   text-align: left;
-  color: #121212; 
+  color: #121212;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(133, 132, 132); 
+  background: rgb(133, 132, 132);
 }
 
 section,
@@ -27,7 +27,7 @@ nav {
 }
 
 a {
-  color: #495fef; 
+  color: #495fef;
   text-decoration: none;
   background-color: transparent;
 }
@@ -75,6 +75,11 @@ button {
   padding: 15px 10px;
 }
 
+.btn-menu {
+  border-radius: 10px;
+  background-color: rgb(250, 226, 215);
+}
+
 .btn:hover {
   background-color: transparent;
   border-color: transparent;
@@ -89,13 +94,12 @@ button:not(:disabled):not(.disabled) {
 }
 
 .btn-ghost {
-	background-color: transparent;
-	border: none;
+  background-color: transparent;
+  border: none;
 }
 
 .btn-primary,
 .btn-primary a {
-  
   color: #fff;
   background-color: #bb86fc;
   border-color: #bb86fc;
@@ -133,17 +137,40 @@ button:not(:disabled):not(.disabled) {
   background-color: #121212;
 }
 
-.secondContainer{
-	display: flex;
-	gap: 20px;
-	align-items: flex-start;
-	justify-content: flex;
+.secondContainer {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex;
 }
 
 .leftContainer {
-	flex: 6;
+  flex: 6;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: antiquewhite;
 }
 
 .rightContainer {
-	flex: 2;
+  flex: 2;
+}
+
+.dataForm {
+	margin-top: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.input-root {
+	border: 1px solid rgb(162, 159, 159);
+	border-radius: 5px;
+	padding: 10px;
+	line-height: 1.2;
+	width: 320px;
+	margin-bottom: 1.5rem;
+	padding: 10px 0;
+	padding-left: 1rem;
 }

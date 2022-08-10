@@ -3,6 +3,9 @@ import ItemCart from "./ItemCart/ItemCart";
 import s from "./ItemContainer.module.css";
 
 class ItemContainer extends Component {
+
+	updateDisplay = (state) => this.props.updateDisplay(state);
+
   render() {
     const { cart } = this.props;
     const headers = ["Products", "Prices", "Quantity", "Total Price"];
@@ -26,6 +29,7 @@ class ItemContainer extends Component {
             />
           );
         })}
+		  <button onClick={() => this.updateDisplay("home")} className="btn btn-menu">Back to Home</button>
       </div>
     );
   }
