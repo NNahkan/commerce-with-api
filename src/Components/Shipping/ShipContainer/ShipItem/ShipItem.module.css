@@ -1,20 +1,36 @@
-label {
-	height: 70px;
-	display: block;
-	position: relative;
+.inputLabel {
+  height: 70px;
+  display: block;
+  position: relative;
+  width: 70%;
 }
 
 .inputRoot {
-	border: 1px solid rgb(162, 159, 159);
-	border-radius: 5px;
-	padding: 10px;
-	line-height: 1.2;
-	width: 480px;
+  border: 1px solid rgb(162, 159, 159);
+  border-radius: 5px;
+  padding: 10px;
+  line-height: 1.2;
+  width: 100%;
 }
 
 .error {
-	color: red;
-	font-size: 14px;
-	position: absolute;
-	top: 40px;
+  color: red;
+  font-size: 14px;
+  position: absolute;
+  top: 45px;
+  left: 8px;
+}
+
+.countryList {
+	display: block;
+	position: relative;
+	height: 70px;
+	line-height: 1.2;
+	width: 100%;
+	text-align: center;
+}
+
+.countryList select {
+	padding: 10px;
+	width: 70%;
 }

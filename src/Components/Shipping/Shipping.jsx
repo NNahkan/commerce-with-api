@@ -6,7 +6,9 @@ class Shipping extends Component {
   render() {
     return (
       <div className="secondContainer">
-        <ShipContainer />
+        <ShipContainer 
+		 updateShipping={this.props.updateShipping} 
+		  />
         <Summary
           cart={this.props.cart}
           displayScreens={this.props.displayScreens}

@@ -141,11 +141,11 @@ button:not(:disabled):not(.disabled) {
   display: flex;
   gap: 20px;
   align-items: flex-start;
-  justify-content: flex;
+  flex-wrap: wrap;
 }
 
 .leftContainer {
-  flex: 6;
+  flex: 7;
   width: 100%;
   padding: 1rem;
   border-radius: 8px;
@@ -153,7 +153,8 @@ button:not(:disabled):not(.disabled) {
 }
 
 .rightContainer {
-  flex: 2;
+  flex: 3;
+  min-width: 250px;
 }
 
 .dataForm {

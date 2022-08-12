@@ -4,7 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import CommerceService from "../service";
 import { variables } from "../Javascript/StateVariables";
 import Cart from "../Cart/Cart";
-import Shipping from "../Shipping/Shipping"
+import Shipping from "../Shipping/Shipping";
 
 const INIT_CARD = variables;
 
@@ -92,7 +92,8 @@ class Commerce extends Component {
 
   updateCart = (state, func) =>
     this.updateSubState("commerce", "cart", state, func);
-
+  updateShipping = (state, func) =>
+    this.updateSubState("commerce", "shipping", state, func);
   updateItem = (name, state) =>
     this.updateItemCart("commerce", "cart", name, state);
 
@@ -134,14 +135,15 @@ class Commerce extends Component {
           )}
 
           {shipping && (
-				<Shipping
-				updateDisplay={this.updateDisplay}
+            <Shipping
+              updateShipping={this.updateShipping}
+              updateDisplay={this.updateDisplay}
               displayScreens={commerce.displayScreens}
               updateItem={this.updateItem}
               cart={commerce.cart}
               deleteCart={this.deleteCart}
-				/>
-			 )}
+            />
+          )}
         </div>
         {error && <h3> Error loading data</h3>}
       </>
