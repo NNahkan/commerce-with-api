@@ -64,7 +64,6 @@ class ShipContainer extends Component {
     }));
   };
 
-  
   handleBlur = ({ target: { name, value } }) => {
     this.handleValidation(name, value);
   };
@@ -80,53 +79,53 @@ class ShipContainer extends Component {
       case "lastName":
       case "city":
       case "state":
-			handval(onlyTextValidation);
+        handval(onlyTextValidation);
         break;
-		  case "zip":
-			  handval(postcodeValidation);
+      case "zip":
+        handval(postcodeValidation);
         break;
-		  case "phoneNumber":
+      case "phoneNumber":
         handval(phoneValidation);
         break;
-		  default:
-			  break;
-			}
-		};
-		
-		checkErrorBeforeSave = () => {
-		 const {shippingInfo, error} = this.state;
-		 let errorValue = {};
-		 let isError = false;
-		 Object.keys(shippingInfo).forEach((val) => {
-			 if (!shippingInfo[val].length) {
-				 errorValue = {...errorValue,[`${val}Error`]: "Required" };
-				 isError = true;
-			 } else if (error[`${val}Error`] != null) {
-				 isError = true;
-			 }
-		 });
-		 this.updateState("error", ...errorValue);
-		 console.log(error);
-		 return isError;
-		}
+      default:
+        break;
+    }
+  };
 
-		handleAddCard = (e) => {
-			e.preventDefault();
-			const errorCheck = this.checkErrorBeforeSave();
-			if (!errorCheck) {
-				this.props.updateShipping({
-					shippingInfo: this.state.shippingInfo,
-			  });
-			  this.setState({ INIT_CARD });
-			}
-		}
+  checkErrorBeforeSave = () => {
+    const { shippingInfo, error } = this.state;
+    let errorValue = {};
+    let isError = false;
+    Object.keys(shippingInfo).forEach((val) => {
+      if (!shippingInfo[val].length) {
+        errorValue = { ...errorValue, [`${val}Error`]: "Required" };
+        isError = true;
+      } else if (error[`${val}Error`] != null) {
+        isError = true;
+      }
+    });
+    this.updateState("error", ...errorValue);
+    console.log(error);
+    return isError;
+  };
 
-		render() {
-			const { shippingInfo, error } = this.state;
-			const {
-				firstName,
-				lastName,
-				address,
+  handleAddCard = (e) => {
+    e.preventDefault();
+    const errorCheck = this.checkErrorBeforeSave();
+    if (!errorCheck) {
+      this.props.updateShipping({
+        shippingInfo: this.state.shippingInfo,
+      });
+      this.setState({ INIT_CARD });
+    }
+  };
+
+  render() {
+    const { shippingInfo, error } = this.state;
+    const {
+      firstName,
+      lastName,
+      address,
       city,
       state,
       country,
@@ -202,29 +201,30 @@ class ShipContainer extends Component {
               ))
             : null}
           <div className={s.radioWrapper}>
-				<p><strong>Delivery Options:</strong></p>
+            <p>
+              <strong>Delivery Options:</strong>
+            </p>
             <label htmlFor="standard">
-				<input
-				checked={delivery === "standard"}
-              type="radio"
-              name="delivery"
-              id="standard"
-              value="standard"
-              onChange={this.handleInputData}
-            />
-				Standard
-				</label>
+              <input
+                checked={delivery === "standard"}
+                type="radio"
+                name="delivery"
+                id="standard"
+                value="standard"
+                onChange={this.handleInputData}
+              />
+              Standard
+            </label>
             <label htmlFor="express">
-				<input
-
-              type="radio"
-              name="delivery"
-              id="express"
-              value="express"
-              onChange={this.handleInputData}
-            />
-				Express
-				</label>
+              <input
+                type="radio"
+                name="delivery"
+                id="express"
+                value="express"
+                onChange={this.handleInputData}
+              />
+              Express
+            </label>
           </div>
         </form>
       </div>
