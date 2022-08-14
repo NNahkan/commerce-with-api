@@ -14,7 +14,7 @@ class ItemCart extends Component {
 	// deletecart = this.props.deleteCart
 	creatingSelect = (inventory) => {
 		let arr = [];
-		for ( let i = 0; i <= inventory; i++) {
+		for ( let i = 1; i <= inventory; i++) {
 			arr.push(
 				<option key={i}  value={i} >
 					{i}

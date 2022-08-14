@@ -129,8 +129,9 @@ class Commerce extends Component {
               updateDisplay={this.updateDisplay}
               displayScreens={commerce.displayScreens}
               updateItem={this.updateItem}
-              cart={commerce.cart}
+              commerce={commerce}
               deleteCart={this.deleteCart}
+				  
             />
           )}
 
@@ -140,7 +141,8 @@ class Commerce extends Component {
               updateDisplay={this.updateDisplay}
               displayScreens={commerce.displayScreens}
               updateItem={this.updateItem}
-              cart={commerce.cart}
+				  updateSubState={this.updateSubState}
+				  commerce={commerce}
               deleteCart={this.deleteCart}
             />
           )}

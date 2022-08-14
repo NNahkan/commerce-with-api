@@ -6,13 +6,16 @@ class Shipping extends Component {
   render() {
     return (
       <div className="secondContainer">
-        <ShipContainer 
-		 updateShipping={this.props.updateShipping} 
-		  />
-        <Summary
-          cart={this.props.cart}
-          displayScreens={this.props.displayScreens}
+        <ShipContainer
+          updateShipping={this.props.updateShipping}
+          updateSubState={this.props.updateSubState}
           updateDisplay={this.props.updateDisplay}
+        />
+        <Summary
+          cart={this.props.commerce.cart}
+          delivery={this.props.commerce.shipping.delivery}
+			 displayScreens={this.props.displayScreens}
+			 updateDisplay={this.props.updateDisplay}
         />
       </div>
     );

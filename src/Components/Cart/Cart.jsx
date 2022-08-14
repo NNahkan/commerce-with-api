@@ -9,11 +9,12 @@ class Cart extends Component {
         <ItemContainer
           updateDisplay={this.props.updateDisplay}
           updateItem={this.props.updateItem}
-          cart={this.props.cart}
+          cart={this.props.commerce.cart}
           deleteCart={this.props.deleteCart}
         />
         <Summary
-          cart={this.props.cart}
+          cart={this.props.commerce.cart}
+          delivery={this.props.commerce.shipping.delivery}
 			 displayScreens={this.props.displayScreens}
 			 updateDisplay={this.props.updateDisplay}
         />

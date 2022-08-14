@@ -1,0 +1,36 @@
+.itemSummaries {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 5px;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed black;
+}
+
+.imageWrap {
+  height: 50px;
+  width: 50px;
+}
+
+.imageWrap img {
+	height: 100%;
+	width: 100%;
+}
+
+.itemInfos {
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.itemName {
+	text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.itemInfos div {
+	display: flex;
+	justify-content: space-between;
+}

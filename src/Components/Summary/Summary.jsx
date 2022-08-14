@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import CartSummary from './CartSummary/CartSummary';
 import Prices from './Prices/Prices';
 import s from "./Summary.module.css"
 
 class Summary extends Component {
 
 	priceTotal = () => {
-		const cart = this.props.cart;
+		const cart = this.props.cart
 		let total = 0;
 		const cartNames = Object.keys(cart);
 		for ( const item of cartNames) {
@@ -17,9 +18,15 @@ class Summary extends Component {
 	}
 
 	priceShipping = () => {
+		const delivery = this.props.delivery;
+		console.log(delivery);
 		let shipPrice = 0;
-		if (this.priceTotal() < 250 && this.priceTotal() > 0) {
-			shipPrice = 10
+		if (delivery === "express" ) {
+			shipPrice = 15
+		} else {
+			shipPrice = this.priceTotal() >= 250 
+			? 0
+			: 10
 		}
 		return parseFloat(shipPrice.toFixed(2));
 	}
@@ -36,7 +43,8 @@ class Summary extends Component {
 	}
 
 	render() {
-		
+		const { home, login, cart, shipping, signUp } =
+      this.props.displayScreens;
 
 
 		return (
@@ -46,7 +54,26 @@ class Summary extends Component {
 				<Prices
 				priceTotal = {this.priceTotal}
 				priceShipping = {this.priceShipping}/>
+				{!cart && (
+					Object.keys(this.props.cart).map(( product, ind) => {
+						const item = this.props.cart[product];
+						return (
+							<CartSummary
+							key={ind}
+							item={item}
+							/>
+						)
+					})
+				)}
+				
+				
 				<button onClick={()=>this.nextPage()} className='btn btn-menu'>Next Step</button>
+				{shipping && (
+					<button
+					type='submit'
+					form='shippingForm'
+					> Shipping</button>
+				)}
 				</div>
 		);
 	}

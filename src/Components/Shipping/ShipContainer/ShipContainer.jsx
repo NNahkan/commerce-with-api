@@ -43,6 +43,11 @@ class ShipContainer extends Component {
     };
   }
 
+  updateDelivery = () => {
+	this.props.updateSubState("commerce","shipping", {delivery: this.state.shippingInfo.delivery})
+  } 
+ 
+
   updateState = (name, state, func) => {
     this.setState(
       (prevState) => ({
@@ -55,13 +60,12 @@ class ShipContainer extends Component {
     );
   };
 
+
   handleInputData = ({ target: { name, value } }) => {
-    this.setState((prevState) => ({
-      shippingInfo: {
-        ...prevState.shippingInfo,
-        [name]: value,
-      },
-    }));
+    name === "delivery" 
+	 ?     this.updateState("shippingInfo", {[name]: value}, this.updateDelivery)
+	:     this.updateState("shippingInfo", {[name]: value})
+
   };
 
   handleBlur = ({ target: { name, value } }) => {
@@ -104,7 +108,7 @@ class ShipContainer extends Component {
         isError = true;
       }
     });
-    this.updateState("error", ...errorValue);
+    this.updateState("error", errorValue);
     console.log(error);
     return isError;
   };
@@ -176,7 +180,12 @@ class ShipContainer extends Component {
     return (
       <div className="leftContainer">
         <h2>Shipping Information</h2>
-        <form className="dataForm" action="">
+        <form
+          onSubmit={this.handleAddCard}
+          id="shippingForm"
+          className="dataForm"
+          action=""
+        >
           {inputData.length
             ? inputData.map((item, ind) => (
                 <ShipItem
@@ -227,6 +236,12 @@ class ShipContainer extends Component {
             </label>
           </div>
         </form>
+        <button
+          onClick={() => this.props.updateDisplay("cart")}
+          className="btn btn-menu"
+        >
+          Back to Cart
+        </button>
       </div>
     );
   }
