@@ -139,7 +139,6 @@ class Commerce extends Component {
             <Shipping
               updateShipping={this.updateShipping}
               updateDisplay={this.updateDisplay}
-              displayScreens={commerce.displayScreens}
               updateItem={this.updateItem}
 				  updateSubState={this.updateSubState}
 				  commerce={commerce}

@@ -3,19 +3,31 @@ import Summary from "../Summary/Summary";
 import ShipContainer from "./ShipContainer/ShipContainer";
 
 class Shipping extends Component {
+	constructor() {
+		super();
+		this.state = {
+			 shippingButton: true,
+		};
+  }
+
+  updateButton = (boolean) => {
+	this.setState({shippingButton: boolean})
+  }
+
   render() {
+	const {shippingButton} = this.state;
     return (
       <div className="secondContainer">
         <ShipContainer
+		  updateButton = {this.updateButton}
           updateShipping={this.props.updateShipping}
           updateSubState={this.props.updateSubState}
           updateDisplay={this.props.updateDisplay}
         />
         <Summary
-          cart={this.props.commerce.cart}
-          delivery={this.props.commerce.shipping.delivery}
-			 displayScreens={this.props.displayScreens}
-			 updateDisplay={this.props.updateDisplay}
+          commerce={this.props.commerce}
+          updateDisplay={this.props.updateDisplay}
+			 shippingButton = {shippingButton}
         />
       </div>
     );

@@ -13,9 +13,7 @@ class Cart extends Component {
           deleteCart={this.props.deleteCart}
         />
         <Summary
-          cart={this.props.commerce.cart}
-          delivery={this.props.commerce.shipping.delivery}
-			 displayScreens={this.props.displayScreens}
+		  commerce = {this.props.commerce}
 			 updateDisplay={this.props.updateDisplay}
         />
       </div>

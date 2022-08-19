@@ -44,9 +44,10 @@ class ShipContainer extends Component {
   }
 
   updateDelivery = () => {
-	this.props.updateSubState("commerce","shipping", {delivery: this.state.shippingInfo.delivery})
-  } 
- 
+    this.props.updateSubState("commerce", "shipping", {
+      delivery: this.state.shippingInfo.delivery,
+    });
+  };
 
   updateState = (name, state, func) => {
     this.setState(
@@ -60,24 +61,34 @@ class ShipContainer extends Component {
     );
   };
 
-
   handleInputData = ({ target: { name, value } }) => {
-    name === "delivery" 
-	 ?     this.updateState("shippingInfo", {[name]: value}, this.updateDelivery)
-	:     this.updateState("shippingInfo", {[name]: value})
-
+    name === "delivery"
+      ? this.updateState("shippingInfo", { [name]: value }, this.updateDelivery)
+      : this.updateState("shippingInfo", { [name]: value });
   };
 
   handleBlur = ({ target: { name, value } }) => {
     this.handleValidation(name, value);
   };
 
+  buttonCheck = () => {
+	const {shippingInfo} = this.state;
+	const buttonBoolean = Object.keys(shippingInfo).every((item) => 
+	shippingInfo[item].length
+	);
+	buttonBoolean === true 
+	? this.props.updateButton(false)
+	: this.props.updateButton(true)
+  }
+
   handleValidation = (name, value) => {
+	this.buttonCheck();
     let errorText;
     const handval = (valid) => {
       errorText = valid(value);
       this.updateState("error", { [`${name}Error`]: errorText });
     };
+
     switch (name) {
       case "firstName":
       case "lastName":
@@ -90,6 +101,10 @@ class ShipContainer extends Component {
         break;
       case "phoneNumber":
         handval(phoneValidation);
+        break;
+      case "address":
+      case "country":
+        this.updateState("error", { [`${name}Error`]: undefined });
         break;
       default:
         break;
@@ -105,11 +120,13 @@ class ShipContainer extends Component {
         errorValue = { ...errorValue, [`${val}Error`]: "Required" };
         isError = true;
       } else if (error[`${val}Error`] != null) {
-        isError = true;
+        this.handleValidation(val, shippingInfo[val])
+        error[`${val}Error`] === null 
+		  ? isError = true 
+		  : isError = false;
       }
     });
     this.updateState("error", errorValue);
-    console.log(error);
     return isError;
   };
 
@@ -121,6 +138,7 @@ class ShipContainer extends Component {
         shippingInfo: this.state.shippingInfo,
       });
       this.setState({ INIT_CARD });
+		this.props.updateDisplay("payment")
     }
   };
 

@@ -6,7 +6,7 @@ import s from "./Summary.module.css"
 class Summary extends Component {
 
 	priceTotal = () => {
-		const cart = this.props.cart
+		const cart = this.props.commerce.cart
 		let total = 0;
 		const cartNames = Object.keys(cart);
 		for ( const item of cartNames) {
@@ -18,8 +18,7 @@ class Summary extends Component {
 	}
 
 	priceShipping = () => {
-		const delivery = this.props.delivery;
-		console.log(delivery);
+		const delivery = this.props.commerce.shipping.delivery;
 		let shipPrice = 0;
 		if (delivery === "express" ) {
 			shipPrice = 15
@@ -32,7 +31,7 @@ class Summary extends Component {
 	}
 
 	nextPage = () => {
-		const displayScreens = this.props.displayScreens
+		const displayScreens = this.props.commerce.displayScreens
 		const names = Object.keys(displayScreens)
 		names.forEach(elm => {
 			const ind = names.indexOf(elm);
@@ -44,7 +43,10 @@ class Summary extends Component {
 
 	render() {
 		const { home, login, cart, shipping, signUp } =
-      this.props.displayScreens;
+      this.props.commerce.displayScreens;
+
+		const cartList = this.props.commerce.cart;
+		const shippingButton = this.props.shippingButton;
 
 
 		return (
@@ -55,8 +57,8 @@ class Summary extends Component {
 				priceTotal = {this.priceTotal}
 				priceShipping = {this.priceShipping}/>
 				{!cart && (
-					Object.keys(this.props.cart).map(( product, ind) => {
-						const item = this.props.cart[product];
+					Object.keys(cartList).map(( product, ind) => {
+						const item = cartList[product];
 						return (
 							<CartSummary
 							key={ind}
@@ -67,9 +69,13 @@ class Summary extends Component {
 				)}
 				
 				
-				<button onClick={()=>this.nextPage()} className='btn btn-menu'>Next Step</button>
+				{cart && (
+					<button onClick={()=>this.nextPage()} className='btn btn-menu'>Next Step</button>
+				)}
 				{shipping && (
 					<button
+					disabled={shippingButton}
+					className='btn btn-menu'
 					type='submit'
 					form='shippingForm'
 					> Shipping</button>
