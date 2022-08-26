@@ -70,9 +70,9 @@ class ShipContainer extends Component {
   };
 
   buttonCheck = () => {
-    const { shippingInfo } = this.state;
+    const { shippingInfo, error } = this.state;
     const buttonBoolean = Object.keys(shippingInfo).every(
-      (item) => shippingInfo[item].length
+      (item) => shippingInfo[item].length && error[`${item}Error`] === undefined
     );
     buttonBoolean === true
       ? this.props.updateButton(false)
@@ -80,11 +80,10 @@ class ShipContainer extends Component {
   };
 
   handleValidation = (name, value) => {
-    this.buttonCheck();
     let errorText;
     const handval = (valid) => {
       errorText = valid(value);
-      this.updateState("error", { [`${name}Error`]: errorText });
+      this.updateState("error", { [`${name}Error`]: errorText }, this.buttonCheck);
     };
 
     switch (name) {
@@ -119,7 +118,7 @@ class ShipContainer extends Component {
         isError = true;
       } else if (error[`${val}Error`] != null) {
         this.handleValidation(val, shippingInfo[val]);
-        error[`${val}Error`] === null ? (isError = true) : (isError = false);
+        error[`${val}Error`] === null ? (isError = false) : (isError = true);
       }
     });
     this.updateState("error", errorValue);

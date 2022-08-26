@@ -7,6 +7,7 @@ import {
 } from "../../Javascript/Validations";
 import PaymentItem from "./PaymentItem/PaymentItem";
 import { OTHERCARDS } from "../../Javascript/cardConst";
+import { logDOM } from "@testing-library/react";
 
 const INIT_CARD = {
   card: "",
@@ -74,27 +75,30 @@ class PaymentContainer extends Component {
   };
 
   buttonCheck = () => {
-	const { payment } = this.state;
-	const buttonBoolean = Object.keys(payment).every(
-	  (item) => payment[item].length
-	);
-	buttonBoolean === true
-	  ? this.props.updateButton(false)
-	  : this.props.updateButton(true);
- };
+    const { cardData, error } = this.state;
+    const buttonBoolean = Object.keys(cardData).every(
+      (item) => cardData[item].length && error[`${item}Error`] === undefined
+    );
+    buttonBoolean === true
+      ? this.props.updateButton(false)
+      : this.props.updateButton(true);
+  };
 
   handleValidation = (name, value) => {
-	// this.buttonCheck();
     let errorText;
     const handVal = (valid) => {
       errorText = valid(value);
-      this.updateState("error", { [`${name}Error`]: errorText });
-      this.setState({ cardType: this.findDebitCardType(value) });
+      this.updateState(
+        "error",
+        { [`${name}Error`]: errorText },
+        this.buttonCheck
+      );
     };
 
     switch (name) {
       case "card":
         handVal(cardNumberValidation);
+        this.setState({ cardType: this.findDebitCardType(value) });
         break;
       case "cardHolder":
         handVal(onlyTextValidation);
@@ -110,16 +114,39 @@ class PaymentContainer extends Component {
     }
   };
 
-//   handleAddCard = (e) => {
-// 	e.preventDefault();
-// 	const arr = this.state;
-// 	const errorCheck = this.checkErrorBeforeSave();
-// 	if (!errorCheck) {
-// 	  this.props.updatePayment({
-// 		 payment: arr
-// 	  });
-// 	}
-//  };
+  checkErrorBeforeSave = () => {
+    const { cardData, error } = this.state;
+    let errorValue = {};
+    let isError = false;
+    Object.keys(cardData).forEach((val) => {
+      if (!cardData[val].length) {
+        errorValue = { ...errorValue, [`${val}Error`]: "Required" };
+        isError = true;
+      } else if (error[`${val}Error`] != null) {
+        this.handleValidation(val, cardData[val]);
+        error[`${val}Error`] === null ? (isError = true) : (isError = false);
+      }
+    });
+    this.updateState("error", errorValue);
+    return isError;
+  };
+
+  handleAddCard = (e) => {
+    e.preventDefault();
+    const { cardData, cardType } = this.state;
+    const errorCheck = this.checkErrorBeforeSave();
+    if (!errorCheck) {
+      this.props.updatePayment({
+        ...cardData,
+        cardType,
+      });
+      this.setState({
+        cardData: INIT_CARD,
+        cardType: "",
+      });
+      this.props.updateDisplay("confirmed");
+    }
+  };
 
   render() {
     const { cardData, cardType, error, maxLength } = this.state;
@@ -150,7 +177,7 @@ class PaymentContainer extends Component {
       <div className="leftContainer">
         <h2>Payment</h2>
         <form
-         //  onSubmit={this.handleAddCard}
+          onSubmit={this.handleAddCard}
           id="paymentForm"
           className="dataForm"
         >
@@ -165,9 +192,9 @@ class PaymentContainer extends Component {
                   value={cardData && cardData[item.name]}
                   onChange={this.handleInputData}
                   onBlur={this.handleBlur}
-						maxLength={maxLength}
+                  maxLength={maxLength}
                   cardType={cardType}
-						isCard={item.name === 'card'}
+                  isCard={item.name === "card"}
                   error={error}
                   errorM={
                     error && error[item.error] && error[item.error].length > 1

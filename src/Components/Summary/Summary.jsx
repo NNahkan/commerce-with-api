@@ -39,7 +39,7 @@ class Summary extends Component {
   };
 
   render() {
-    const { home, login, cart, shipping, signUp, payment } =
+    const { home, login, cart, shipping, signUp, payment , confirmed} =
       this.props.commerce.displayScreens;
 
     const cartList = this.props.commerce.cart;
@@ -61,7 +61,7 @@ class Summary extends Component {
             const item = cartList[product];
             return <CartSummary key={ind} item={item} />;
           })}
-        {payment && (
+        {(!cart && !shipping) && (
           <div>
             <ul className={`ul-defaults-none ${s.summaryShipping}`}>
               <li>{`${firstName} ${lastName}`}</li>
@@ -95,8 +95,9 @@ class Summary extends Component {
             disabled={paymentButton}
             className="btn btn-menu"
             type="submit"
+				form="paymentForm"
+
           >
-            {" "}
             Confirm the Order
           </button>
         )}

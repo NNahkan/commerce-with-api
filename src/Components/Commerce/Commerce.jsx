@@ -6,6 +6,7 @@ import { variables } from "../Javascript/StateVariables";
 import Cart from "../Cart/Cart";
 import Shipping from "../Shipping/Shipping";
 import Payment from "../Payment/Payment";
+import Confirmed from "../Confirmed/Confirmed";
 
 const INIT_CARD = variables;
 
@@ -116,7 +117,7 @@ class Commerce extends Component {
 
   render() {
     const { loading, error, data, commerce } = this.state;
-    const { home, login, cart, shipping, signUp, payment } =
+    const { home, login, cart, shipping, signUp, payment, confirmed } =
       this.state.commerce.displayScreens;
     return (
       <>
@@ -153,6 +154,9 @@ class Commerce extends Component {
               updateDisplay={this.updateDisplay}
               commerce={commerce}
             />
+          )}
+          {confirmed && (
+            <Confirmed updateDisplay={this.updateDisplay} commerce={commerce} />
           )}
         </div>
         {error && <h3> Error loading data</h3>}
