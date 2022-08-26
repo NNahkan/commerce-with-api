@@ -5,6 +5,7 @@ import CommerceService from "../service";
 import { variables } from "../Javascript/StateVariables";
 import Cart from "../Cart/Cart";
 import Shipping from "../Shipping/Shipping";
+import Payment from "../Payment/Payment";
 
 const INIT_CARD = variables;
 
@@ -94,6 +95,8 @@ class Commerce extends Component {
     this.updateSubState("commerce", "cart", state, func);
   updateShipping = (state, func) =>
     this.updateSubState("commerce", "shipping", state, func);
+  updatePayment = (state, func) =>
+    this.updateSubState("commerce", "payment", state, func);
   updateItem = (name, state) =>
     this.updateItemCart("commerce", "cart", name, state);
 
@@ -113,7 +116,7 @@ class Commerce extends Component {
 
   render() {
     const { loading, error, data, commerce } = this.state;
-    const { home, login, cart, shipping, signUp } =
+    const { home, login, cart, shipping, signUp, payment } =
       this.state.commerce.displayScreens;
     return (
       <>
@@ -131,7 +134,6 @@ class Commerce extends Component {
               updateItem={this.updateItem}
               commerce={commerce}
               deleteCart={this.deleteCart}
-				  
             />
           )}
 
@@ -140,9 +142,16 @@ class Commerce extends Component {
               updateShipping={this.updateShipping}
               updateDisplay={this.updateDisplay}
               updateItem={this.updateItem}
-				  updateSubState={this.updateSubState}
-				  commerce={commerce}
+              updateSubState={this.updateSubState}
+              commerce={commerce}
               deleteCart={this.deleteCart}
+            />
+          )}
+          {payment && (
+            <Payment
+              updatePayment={this.updatePayment}
+              updateDisplay={this.updateDisplay}
+              commerce={commerce}
             />
           )}
         </div>

@@ -20,7 +20,6 @@ const INIT_CARD = {
     delivery: "",
   },
   error: {},
-  generalError: false,
 };
 
 class ShipContainer extends Component {
@@ -39,7 +38,6 @@ class ShipContainer extends Component {
         delivery: "standard",
       },
       error: {},
-      generalError: false,
     };
   }
 
@@ -72,17 +70,17 @@ class ShipContainer extends Component {
   };
 
   buttonCheck = () => {
-	const {shippingInfo} = this.state;
-	const buttonBoolean = Object.keys(shippingInfo).every((item) => 
-	shippingInfo[item].length
-	);
-	buttonBoolean === true 
-	? this.props.updateButton(false)
-	: this.props.updateButton(true)
-  }
+    const { shippingInfo } = this.state;
+    const buttonBoolean = Object.keys(shippingInfo).every(
+      (item) => shippingInfo[item].length
+    );
+    buttonBoolean === true
+      ? this.props.updateButton(false)
+      : this.props.updateButton(true);
+  };
 
   handleValidation = (name, value) => {
-	this.buttonCheck();
+    this.buttonCheck();
     let errorText;
     const handval = (valid) => {
       errorText = valid(value);
@@ -120,10 +118,8 @@ class ShipContainer extends Component {
         errorValue = { ...errorValue, [`${val}Error`]: "Required" };
         isError = true;
       } else if (error[`${val}Error`] != null) {
-        this.handleValidation(val, shippingInfo[val])
-        error[`${val}Error`] === null 
-		  ? isError = true 
-		  : isError = false;
+        this.handleValidation(val, shippingInfo[val]);
+        error[`${val}Error`] === null ? (isError = true) : (isError = false);
       }
     });
     this.updateState("error", errorValue);
@@ -138,23 +134,13 @@ class ShipContainer extends Component {
         shippingInfo: this.state.shippingInfo,
       });
       this.setState({ INIT_CARD });
-		this.props.updateDisplay("payment")
+      this.props.updateDisplay("payment");
     }
   };
 
   render() {
     const { shippingInfo, error } = this.state;
-    const {
-      firstName,
-      lastName,
-      address,
-      city,
-      state,
-      country,
-      zip,
-      phoneNumber,
-      delivery,
-    } = shippingInfo;
+    const { delivery } = shippingInfo;
     const inputData = [
       {
         label: "First Name",
@@ -202,7 +188,6 @@ class ShipContainer extends Component {
           onSubmit={this.handleAddCard}
           id="shippingForm"
           className="dataForm"
-          action=""
         >
           {inputData.length
             ? inputData.map((item, ind) => (

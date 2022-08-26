@@ -24,7 +24,18 @@ export const variables = {
 	currentUser: false,
 	cart: {},
 	shipping: {
-	  delivery: 'standard'
+	  delivery: 'standard',
+	  shippingInfo: {
+		firstName: "",
+		lastName: "",
+		address: "",
+		city: "",
+		state: "",
+		country: "",
+		zip: "",
+		phoneNumber: "",
+	 },
+	 error: {},
   },
 	payment: {}
 }
