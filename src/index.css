@@ -105,33 +105,6 @@ button:not(:disabled):not(.disabled) {
   border-color: #bb86fc;
 }
 
-.round-pill {
-  border-radius: 50rem;
-}
-
-.header-lg {
-  font-size: 5rem;
-  letter-spacing: -2.5px;
-  line-height: 1.05;
-}
-
-.header-md {
-  font-size: 3rem;
-  letter-spacing: -2px;
-}
-
-.header-sm {
-  font-size: 1.5rem;
-  letter-spacing: -1.5px;
-}
-
-.caption {
-  font-size: 1.3125rem;
-  line-height: 1.5;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-}
-
 .background {
   /* background-color: #f0f0f0; */
   background-color: #121212;
@@ -158,20 +131,42 @@ button:not(:disabled):not(.disabled) {
 }
 
 .dataForm {
-	margin: 2rem 0;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.input-root {
+.inputLabel {
+	height: 70px;
+	display: block;
+	position: relative;
+	width: 100%;
+ }
+
+.inputRoot {
 	border: 1px solid rgb(162, 159, 159);
 	border-radius: 5px;
 	padding: 10px;
 	line-height: 1.2;
-	width: 320px;
-	margin-bottom: 1.5rem;
-	padding: 10px 0;
-	padding-left: 1rem;
+	width: 100%;
+ }
+
+ .error {
+	color: red;
+	font-size: 14px;
+	position: absolute;
+	top: 40px;
+	left: 8px;
+ }
+
+.accountPage {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: antiquewhite;
 }

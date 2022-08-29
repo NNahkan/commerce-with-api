@@ -22,3 +22,19 @@
 	margin: 10px 0;
 }
 
+.confirmedInfos {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	margin-top: 1rem;
+}
+
+.confirmedInfos p {
+	text-transform: capitalize;
+	font-weight: 600;
+}
+
+.cardTypeWrap {
+	display: flex;
+	align-items: center;
+}

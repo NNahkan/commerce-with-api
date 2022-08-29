@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CartSummary from "./CartSummary/CartSummary";
 import Prices from "./Prices/Prices";
 import s from "./Summary.module.css";
+import { CARDICON } from "../Javascript/cardConst";
 
 class Summary extends Component {
   priceTotal = () => {
@@ -39,9 +40,10 @@ class Summary extends Component {
   };
 
   render() {
-    const { home, login, cart, shipping, signUp, payment , confirmed} =
+    const { home, login, cart, shipping, signUp, payment, confirmed } =
       this.props.commerce.displayScreens;
 
+    const { card, cardType, cardHolder } = this.props.commerce.payment;
     const cartList = this.props.commerce.cart;
     const delivery = this.props.commerce.shipping.delivery;
     const { firstName, lastName, city, address, country, zip } =
@@ -61,7 +63,7 @@ class Summary extends Component {
             const item = cartList[product];
             return <CartSummary key={ind} item={item} />;
           })}
-        {(!cart && !shipping) && (
+        {!cart && !shipping && (
           <div>
             <ul className={`ul-defaults-none ${s.summaryShipping}`}>
               <li>{`${firstName} ${lastName}`}</li>
@@ -71,6 +73,25 @@ class Summary extends Component {
               <li style={{ fontSize: "13px" }}>{address}</li>
               <li> {country}</li>
             </ul>
+          </div>
+        )}
+
+        {confirmed && (
+          <div className={s.confirmedInfos}>
+            <p>{cardHolder}</p>
+            <p>**** **** **** {card.slice(-4)}</p>
+            <div className={s.cardTypeWrap}>
+				<img
+                style={{
+                  width: "50px",
+                  height: "33px",
+                }}
+                src={CARDICON[cardType]}
+                alt="card"
+              />
+              <span>{cardType}</span>
+              
+            </div>
           </div>
         )}
 
@@ -95,8 +116,7 @@ class Summary extends Component {
             disabled={paymentButton}
             className="btn btn-menu"
             type="submit"
-				form="paymentForm"
-
+            form="paymentForm"
           >
             Confirm the Order
           </button>

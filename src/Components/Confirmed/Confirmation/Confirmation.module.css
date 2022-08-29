@@ -1,0 +1,28 @@
+.confirmationWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+}
+
+.confirmationWrap i {
+  color: red;
+  font-size: 4rem;
+  margin: 2rem 0;
+}
+
+.confirmationWrap p {
+  text-align: center;
+  padding: 0 2rem;
+  margin-bottom: 1rem;
+}
+
+.infoMd {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.confirmationWrap button {
+  margin-top: 1rem;
+}

@@ -7,6 +7,7 @@ import Cart from "../Cart/Cart";
 import Shipping from "../Shipping/Shipping";
 import Payment from "../Payment/Payment";
 import Confirmed from "../Confirmed/Confirmed";
+import SignUp from "../SignUp/SignUp";
 
 const INIT_CARD = variables;
 
@@ -100,6 +101,10 @@ class Commerce extends Component {
     this.updateSubState("commerce", "payment", state, func);
   updateItem = (name, state) =>
     this.updateItemCart("commerce", "cart", name, state);
+  updateCurrentUser = (state, func) =>
+    this.updateSubState("commerce", "currentUser", state, func);
+	 updateUserList = (state, func) =>
+	 this.updateSubState("commerce", "savedUsers", state, func);
 
   updateDisplay = (display) => {
     const displayCondition = Object.keys(this.state.commerce.displayScreens);
@@ -127,6 +132,13 @@ class Commerce extends Component {
             <>{home && <Home updateCart={this.updateCart} data={data} />}</>
           ) : (
             <div>Loading...</div>
+          )}
+          {signUp && (
+            <SignUp
+              updateCurrentUser={this.updateCurrentUser}
+              updateUserList={this.updateUserList}
+              updateDisplay={this.updateDisplay}
+            />
           )}
           {cart && (
             <Cart
