@@ -15,7 +15,7 @@ class Navbar extends Component {
             <button className="btn-ghost" onClick={() => this.updateDisplay("home")}>NNahkan</button>
             <div style={{marginLeft: "auto"}}>
               <ul className={`ul-defaults-none ${s.ulNavbar}`}>
-                <li><button className="btn-ghost" >Login</button></li>
+                <li><button className="btn-ghost" onClick={() => this.updateDisplay("login")} >Login</button></li>
                 <li><button className="btn-ghost" onClick={() => this.updateDisplay("signUp")} >Create An Account</button></li>
                 <li><button className="btn-ghost" onClick={() => this.updateDisplay("cart")}>Cart</button></li>
               </ul>

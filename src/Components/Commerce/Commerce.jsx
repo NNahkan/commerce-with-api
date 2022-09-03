@@ -8,6 +8,7 @@ import Shipping from "../Shipping/Shipping";
 import Payment from "../Payment/Payment";
 import Confirmed from "../Confirmed/Confirmed";
 import SignUp from "../SignUp/SignUp";
+import Login from "../Login/Login";
 
 const INIT_CARD = variables;
 
@@ -133,6 +134,9 @@ class Commerce extends Component {
           ) : (
             <div>Loading...</div>
           )}
+			 {login && (
+				<Login/>
+			 )}
           {signUp && (
             <SignUp
               updateCurrentUser={this.updateCurrentUser}

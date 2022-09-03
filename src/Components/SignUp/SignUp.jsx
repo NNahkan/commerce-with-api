@@ -6,7 +6,6 @@ import {
   passwordValidation,
 } from "../Javascript/Validations";
 import SignItem from "./SignItem/SignItem";
-import s from "./SignUp.module.css";
 
 const NEW_USER = {
   firstName: "",
@@ -143,7 +142,7 @@ class SignUp extends Component {
         <form
           onSubmit={this.handleAddCard}
           id="signUpForm"
-          className={s.labelWrapper}
+          className='labelWrapper'
         >
           {inputData.length
             ? inputData.map((item, ind) => (
