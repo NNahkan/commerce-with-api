@@ -135,7 +135,9 @@ class Commerce extends Component {
             <div>Loading...</div>
           )}
 			 {login && (
-				<Login/>
+				<Login
+				commerce={commerce}
+				/>
 			 )}
           {signUp && (
             <SignUp

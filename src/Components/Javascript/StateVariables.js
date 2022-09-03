@@ -4,6 +4,12 @@ const savedUsers = {
 		 lastName: 'brewer',
 		 password: '!Qwer1234',
 		 email: 'jasonB@devslopes.com'
+	},
+	ali: {
+		 firstName: 'ali',
+		 lastName: 'oksuz',
+		 password: '!1234Qwert',
+		 email: 'ali@devslopes.com'
 	}
 }
 
