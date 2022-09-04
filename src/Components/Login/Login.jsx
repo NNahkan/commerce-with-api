@@ -88,7 +88,7 @@ class Login extends Component {
       this.passwordCheck(pass) === true
         ? (isError = false)
         : this.updateState("error", {
-            passwordError: "Password does not match",
+            passwordError: "Password does not match!",
           });
     } else {
       this.updateState("error", {
