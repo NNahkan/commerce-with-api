@@ -55,15 +55,36 @@ class Login extends Component {
     }
   };
 
-  deneme = () => {
-    let isError = true;
+  //  Is it good for SRP ??
+  /*  deneme = () => {
+	let isError = true;
+	const userList = this.props.commerce.savedUsers;
+	const currentAttempt = this.state.userLogin;
+	const result = Object.keys(userList).find(
+	  (item) => userList[item].email === currentAttempt.email
+	);
+	if (result !== undefined) {
+	  const pass = userList[result].password;
+	  this.passwordCheck(pass) === true
+		 ? (isError = false)
+		 : this.updateState("error", {
+			  passwordError: "Password does not match",
+			});
+	} else {
+	  this.updateState("error", {
+		 emailError: "There is no account with this email",
+	  });
+	}
+	return isError;
+ }; */
+
+  loginCheck = () => {
     const userList = this.props.commerce.savedUsers;
-    const currentAttempt = this.state.userLogin;
-    const result = Object.keys(userList).find(
-      (item) => userList[item].email === currentAttempt.email
-    );
-    if (result !== undefined) {
-		const pass = userList[result].password;
+    let isError = true;
+    const user = this.emailCheck();
+
+    if (user !== undefined) {
+      const pass = userList[user].password;
       this.passwordCheck(pass) === true
         ? (isError = false)
         : this.updateState("error", {
@@ -75,6 +96,15 @@ class Login extends Component {
       });
     }
     return isError;
+  };
+
+  emailCheck = () => {
+    const userList = this.props.commerce.savedUsers;
+    const currentAttempt = this.state.userLogin;
+    const result = Object.keys(userList).find(
+      (item) => userList[item].email === currentAttempt.email
+    );
+    return result;
   };
 
   passwordCheck = (value) => {
@@ -96,9 +126,9 @@ class Login extends Component {
       }
     });
     this.updateState("error", errorValue);
-	 if (isError === false) {
-		isError = this.deneme();
-	 }
+    if (isError === false) {
+      isError = this.loginCheck();
+    }
     return isError;
   };
 
