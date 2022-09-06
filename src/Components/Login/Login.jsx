@@ -149,7 +149,7 @@ class Login extends Component {
     e.preventDefault();
     const errorCheck = this.checkErrorBeforeSave();
     if (!errorCheck) {
-		this.updateCurrentUser();
+      this.updateCurrentUser();
       this.props.updateDisplay("home");
     }
   };
