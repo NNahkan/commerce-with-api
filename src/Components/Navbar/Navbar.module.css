@@ -1,29 +1,45 @@
 .navbar {
-	display: flex;
-	color: pink;
-	padding: 2rem;
-	width: 100%;
-	margin-bottom: 2rem;
-	text-transform: uppercase;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  color: pink;
+  padding: 2rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
 }
 
 .navbar button {
-	color: pink;
-	text-transform: uppercase;
-
+  color: pink;
+  text-transform: uppercase;
+  transition: 0.4s;
 }
 
 .navbar button:hover {
-	color: red;
-	cursor: pointer;
+  color: red;
+  cursor: pointer;
 }
 
 .ulNavbar {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.ulNavbar li {
-	margin-left: 2rem;
+.greeting {
+  color: red;
+  font-size: 1.5rem;
 }
 
+.cartCount {
+  position: absolute;
+  bottom: 8px;
+  padding: 2.5px;
+  left: 13px;
+  color: black;
+  border-radius: 50%;
+  background: white;
+}

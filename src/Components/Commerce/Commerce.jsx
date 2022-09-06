@@ -104,8 +104,8 @@ class Commerce extends Component {
     this.updateItemCart("commerce", "cart", name, state);
   updateCurrentUser = (state, func) =>
     this.updateSubState("commerce", "currentUser", state, func);
-	 updateUserList = (state, func) =>
-	 this.updateSubState("commerce", "savedUsers", state, func);
+  updateUserList = (state, func) =>
+    this.updateSubState("commerce", "savedUsers", state, func);
 
   updateDisplay = (display) => {
     const displayCondition = Object.keys(this.state.commerce.displayScreens);
@@ -127,18 +127,22 @@ class Commerce extends Component {
       this.state.commerce.displayScreens;
     return (
       <>
-        <Navbar updateDisplay={this.updateDisplay} />
+        <Navbar 
+		 commerce={commerce} 
+		  updateDisplay={this.updateDisplay} />
         <div className="container">
           {!loading ? (
             <>{home && <Home updateCart={this.updateCart} data={data} />}</>
           ) : (
             <div>Loading...</div>
           )}
-			 {login && (
-				<Login
-				commerce={commerce}
-				/>
-			 )}
+          {login && (
+            <Login
+              commerce={commerce}
+              updateCurrentUser={this.updateCurrentUser}
+				  updateDisplay={this.updateDisplay}
+            />
+          )}
           {signUp && (
             <SignUp
               updateCurrentUser={this.updateCurrentUser}
