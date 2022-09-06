@@ -29,6 +29,18 @@ class Login extends Component {
     );
   };
 
+  eyeFlip = () => {
+	const eye = this.state.eye;
+    this.setState({ eye: !eye });
+  };
+
+  updateCurrentUser = () => {
+	const userList = this.props.commerce.savedUsers;
+	const name = this.emailCheck()
+	this.props.updateCurrentUser(userList[name]);
+
+  }
+
   handleInputData = ({ target: { name, value } }) => {
     this.updateState("userLogin", { [name]: value });
   };
@@ -88,7 +100,7 @@ class Login extends Component {
       this.passwordCheck(pass) === true
         ? (isError = false)
         : this.updateState("error", {
-            passwordError: "Password does not match",
+            passwordError: "Password does not match! ",
           });
     } else {
       this.updateState("error", {
@@ -137,7 +149,8 @@ class Login extends Component {
     e.preventDefault();
     const errorCheck = this.checkErrorBeforeSave();
     if (!errorCheck) {
-      console.log("basarili", userLogin);
+		this.updateCurrentUser();
+      this.props.updateDisplay("home");
     }
   };
 
@@ -153,7 +166,7 @@ class Login extends Component {
       {
         label: "Password*",
         name: "password",
-        type: "password",
+        type: eye ? "password" : "text",
         error: "passwordError",
       },
     ];
@@ -168,6 +181,7 @@ class Login extends Component {
           {inputData.length
             ? inputData.map((item, ind) => (
                 <LoginItem
+                  eyeFlip={this.eyeFlip}
                   key={ind}
                   name={item.name}
                   id={item.name}
@@ -187,7 +201,7 @@ class Login extends Component {
               ))
             : null}
         </form>
-        <button form="loginForm" className="btn btn-menu">
+        <button form="loginForm" type="submit" className="btn btn-menu">
           LOGIN
         </button>
       </div>

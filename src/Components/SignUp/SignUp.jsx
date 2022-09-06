@@ -38,6 +38,11 @@ class SignUp extends Component {
     );
   };
 
+  eyeFlip = () => {
+    const eye = this.state.eye;
+    this.setState({ eye: !eye });
+  };
+
   handleInputData = ({ target: { name, value } }) => {
     this.updateState("newUser", { [name]: value });
   };
@@ -91,19 +96,20 @@ class SignUp extends Component {
   };
 
   handleAddCard = (e) => {
-	const {newUser} = this.state
+    const { newUser } = this.state;
+    const { confirmPass, ...user } = newUser;
     e.preventDefault();
     const errorCheck = this.checkErrorBeforeSave();
     if (!errorCheck) {
-      this.props.updateCurrentUser(newUser);
-      this.props.updateUserList({ [newUser["firstName"]]: newUser});
+      this.props.updateCurrentUser(user);
+      this.props.updateUserList({ [newUser["firstName"]]: user });
       this.setState({ newUser: NEW_USER });
       this.props.updateDisplay("home");
     }
   };
 
   render() {
-    const { newUser, error } = this.state;
+    const { newUser, eye, error } = this.state;
     const inputData = [
       {
         label: "First Name*",
@@ -126,13 +132,13 @@ class SignUp extends Component {
       {
         label: "Create Password*",
         name: "password",
-        type: "password",
+        type: eye ? "password" : "text",
         error: "passwordError",
       },
       {
         label: "Confirm Password",
         name: "confirmPass",
-        type: "password",
+        type: eye ? "password" : "text",
         error: "confirmPassError",
       },
     ];
@@ -142,11 +148,12 @@ class SignUp extends Component {
         <form
           onSubmit={this.handleAddCard}
           id="signUpForm"
-          className='labelWrapper'
+          className="labelWrapper"
         >
           {inputData.length
             ? inputData.map((item, ind) => (
                 <SignItem
+                  eyeFlip={this.eyeFlip}
                   key={ind}
                   name={item.name}
                   id={item.name}
