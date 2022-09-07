@@ -9,7 +9,7 @@ class ItemCart extends Component {
 		this.props.updateItem(this.props.product.name, {quantity:value})
 	}
 	deleteCart = () => {
-		this.props.deleteCart("commerce","cart",this.props.product.name);
+		this.props.deleteCart(this.props.product.name);
 	};
 	// deletecart = this.props.deleteCart
 	creatingSelect = (inventory) => {

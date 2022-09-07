@@ -113,11 +113,14 @@ class Commerce extends Component {
       this.updateSubState("commerce", "displayScreens", { [elm]: false });
     });
     this.updateSubState("commerce", "displayScreens", { [display]: true });
+    display === "home"
+      ? (document.body.style.backgroundColor = "#e4e4e4")
+      : (document.body.style.backgroundColor = "rgb(133, 132, 132)");
   };
 
-  deleteCart = (commerce, name, sub) => {
+  deleteCart = (sub) => {
     const arr = { ...this.state };
-    delete arr[commerce][name][sub];
+    delete arr.commerce.cart[sub];
     this.setState(arr);
   };
 
@@ -127,12 +130,20 @@ class Commerce extends Component {
       this.state.commerce.displayScreens;
     return (
       <>
-        <Navbar 
-		 commerce={commerce} 
-		  updateDisplay={this.updateDisplay} />
+        <Navbar commerce={commerce} updateDisplay={this.updateDisplay} />
         <div className="container">
           {!loading ? (
-            <>{home && <Home updateCart={this.updateCart} data={data} />}</>
+            <>
+              {home && (
+                <Home
+                  commerce={commerce}
+                  updateCart={this.updateCart}
+                  data={data}
+						deleteCart={this.deleteCart}
+
+                />
+              )}
+            </>
           ) : (
             <div>Loading...</div>
           )}
@@ -140,7 +151,7 @@ class Commerce extends Component {
             <Login
               commerce={commerce}
               updateCurrentUser={this.updateCurrentUser}
-				  updateDisplay={this.updateDisplay}
+              updateDisplay={this.updateDisplay}
             />
           )}
           {signUp && (
