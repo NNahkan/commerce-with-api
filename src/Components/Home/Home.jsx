@@ -19,12 +19,6 @@ class Home extends Component {
     this.setState({ search: value });
   };
 
-  searchFilter = (searchString, item) => {
-    const stringArray = searchString.split(" ");
-    return stringArray.some((word) => word.includes(item.toLowerCase()))
-      ? true
-      : false;
-  };
 
   render() {
     const { data, commerce } = this.props;
@@ -46,16 +40,22 @@ class Home extends Component {
               return 0;
             })
             .filter(
-              (item) =>
-                this.searchFilter(item.name.toLowerCase(), search) ||
-                item.category.toLowerCase().includes(search.toLowerCase())
+              (item) => {
+					const searchLower = search.toLowerCase()
+                if ( searchLower === '') {
+						return item
+					 } else if (item.name.toLowerCase().includes(searchLower) || item.category.toLowerCase().includes(searchLower)){
+						return item
+					 }
+              }
+              /* this.searchFilter(item.name.toLowerCase(), search) ||
+                item.category.toLowerCase().includes(search.toLowerCase()) */
             )
 
             .map((item, index) => (
               <Products
                 cart={commerce.cart}
                 updateCart={this.props.updateCart}
-                stateDeneme={this.props.stateDeneme}
                 key={index}
                 item={item}
                 deleteCart={this.props.deleteCart}
