@@ -12,16 +12,14 @@ class Home extends Component {
     };
   }
 
-  updateSubState = (name, sub, state, func) => this.props.updateSubState(name, sub, state, func);
+  updateSubState = (name, sub, state, func) =>
+    this.props.updateSubState(name, sub, state, func);
 
   searchUser = ({ target: { value } }) => {
     this.setState({ search: value });
   };
 
-
   searchFilter = (searchString, item) => {
-	// Birden fazla kelime yazilmasi
-	// Searching more than a word ?             !!
     const stringArray = searchString.split(" ");
     return stringArray.some((word) => word.includes(item.toLowerCase()))
       ? true
@@ -29,15 +27,12 @@ class Home extends Component {
   };
 
   render() {
-    const { data } = this.props;
+    const { data, commerce } = this.props;
     const { search } = this.state;
 
     return (
       <div className="container">
-        <Searchbar 
-		  searchUser={this.searchUser}
-			search={search} 
-		  />
+        <Searchbar searchUser={this.searchUser} search={search} />
         <div className={s.portfolioGrid}>
           {data
 
@@ -50,19 +45,22 @@ class Home extends Component {
               }
               return 0;
             })
-            .filter((item) => 
-					this.searchFilter(item.name.toLowerCase(), search)
-					|| (item.category.toLowerCase()).includes(search.toLowerCase())
-            ) 
-              
-				.map((item, index) => (
-					<Products 
-					updateCart={this.props.updateCart}
-					stateDeneme={this.props.stateDeneme}
-					key={index}
-					item={item} />
-				))
-				}
+            .filter(
+              (item) =>
+                this.searchFilter(item.name.toLowerCase(), search) ||
+                item.category.toLowerCase().includes(search.toLowerCase())
+            )
+
+            .map((item, index) => (
+              <Products
+                cart={commerce.cart}
+                updateCart={this.props.updateCart}
+                stateDeneme={this.props.stateDeneme}
+                key={index}
+                item={item}
+                deleteCart={this.props.deleteCart}
+              />
+            ))}
         </div>
       </div>
     );
