@@ -14,13 +14,23 @@
 
 .confirmationWrap p {
   text-align: center;
-  padding: 0 2rem;
   margin-bottom: 1rem;
 }
 
 .infoMd {
   font-size: 2rem;
   font-weight: 700;
+  padding: 0 2rem;
+}
+
+.infoWrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.infoBd {
+	max-width: 600px;
+
 }
 
 .confirmationWrap button {

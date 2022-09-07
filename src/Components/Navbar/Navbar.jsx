@@ -48,18 +48,18 @@ class Navbar extends Component {
                 <li>
                   <button
                     disabled={!amount}
-						  style={{opacity:!amount && "50%"}}
+                    style={{ opacity: !amount && "50%" }}
                     className="btn-ghost"
                     onClick={() => this.updateDisplay("cart")}
                   >
-                    Cart
+                    Cart  
+                    <i
+                      style={{opacity: !amount && "0" }}
+                      className={`fas fa-shopping-cart ${s.cartFont}`}
+                    >
+                      <span className={s.cartCount}>{amount}</span>
+                    </i>
                   </button>
-                  <i
-                    style={{ position: "relative",opacity: !amount && "0" }}
-                    className="fas fa-shopping-cart"
-                  >
-                    <span className={s.cartCount}>{amount}</span>
-                  </i>
                 </li>
               </ul>
             </div>

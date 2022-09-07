@@ -1,7 +1,7 @@
 .navbar {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 30px;
   color: pink;
   padding: 2rem;
@@ -24,7 +24,7 @@
 .ulNavbar {
   display: flex;
   gap: 2rem;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -34,12 +34,20 @@
   font-size: 1.5rem;
 }
 
+.cartFont {
+	margin-left: 5px;
+	position: relative;
+	font-size: 1rem;
+
+}
+
 .cartCount {
   position: absolute;
   bottom: 8px;
-  padding: 2.5px;
-  left: 13px;
-  color: black;
+  padding: 2px 4.5px;
+  left: 9px;
+  color: purple;
   border-radius: 50%;
   background: white;
 }
+
