@@ -100,11 +100,7 @@ class Login extends Component {
       this.passwordCheck(pass) === true
         ? (isError = false)
         : this.updateState("error", {
-<<<<<<< HEAD
-            passwordError: "Password does not match!",
-=======
             passwordError: "Password does not match! ",
->>>>>>> fet-try
           });
     } else {
       this.updateState("error", {
