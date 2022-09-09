@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/commerce-with-api/static/css/main.999b9b9b.css",
+    "main.js": "/commerce-with-api/static/js/main.53fd0294.js",
+    "static/js/787.05731967.chunk.js": "/commerce-with-api/static/js/787.05731967.chunk.js",
+    "static/media/amex.png": "/commerce-with-api/static/media/amex.ccde3bdfd214fb1dd52a.png",
+    "static/media/visa.png": "/commerce-with-api/static/media/visa.65efbe1835b35a0510d0.png",
+    "static/media/discover.png": "/commerce-with-api/static/media/discover.521ef0656e612926112b.png",
+    "static/media/masterCard.png": "/commerce-with-api/static/media/masterCard.a2c9a08f323242429695.png",
+    "index.html": "/commerce-with-api/index.html",
+    "main.999b9b9b.css.map": "/commerce-with-api/static/css/main.999b9b9b.css.map",
+    "main.53fd0294.js.map": "/commerce-with-api/static/js/main.53fd0294.js.map",
+    "787.05731967.chunk.js.map": "/commerce-with-api/static/js/787.05731967.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.999b9b9b.css",
+    "static/js/main.53fd0294.js"
+  ]
+}
