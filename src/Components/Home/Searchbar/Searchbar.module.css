@@ -1,39 +1,41 @@
 .searchBar {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .searchBar input {
-	padding: 1rem 1.5rem;
-	border: 2px solid grey;
-	border-radius: 8px;
-	transition: .4s;
+  padding: 1rem 1.5rem;
+  border: 2px solid grey;
+  border-radius: 8px;
+  transition: 0.4s;
 }
 
 .searchBar input:hover {
-	border-color: black;
+  border-color: black;
 }
 
 .searchCategory {
-	display: flex;
-	justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .searchCategory button {
-	border: none;
-	border-bottom: 2px solid transparent;
-	background: transparent;
-	transition: .3s;
-	padding: 5px;
-	font-size: 1.1rem;
-	text-transform: uppercase;
-	font-weight: 600;
-	cursor: pointer;
+  border: none;
+  margin: 0.6rem;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  transition: 0.3s;
+  padding: 5px;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .searchCategory button:hover {
-	color: pink;
-	border-bottom-color: pink;
-} 
+  color: pink;
+  border-bottom-color: pink;
+}

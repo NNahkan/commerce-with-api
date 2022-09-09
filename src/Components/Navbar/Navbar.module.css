@@ -35,10 +35,9 @@
 }
 
 .cartFont {
-	margin-left: 5px;
-	position: relative;
-	font-size: 1rem;
-
+  margin-left: 5px;
+  position: relative;
+  font-size: 1rem;
 }
 
 .cartCount {
@@ -50,4 +49,3 @@
   border-radius: 50%;
   background: white;
 }
-

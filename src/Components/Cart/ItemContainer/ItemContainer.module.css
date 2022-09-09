@@ -1,7 +1,7 @@
 .itemcontainer {
   max-height: 80vh;
   overflow-y: auto;
-  min-width: 320px;
+  min-width: 275px;
 }
 
 .itemFlex {
